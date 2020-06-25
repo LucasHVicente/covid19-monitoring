@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Covid-19 no mundo 
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar style="max-width: 500px;" placeholder="Procurar por pais"  [(ngModel)]="busca" (ionChange)="search()"></ion-searchbar>
+    <div class="select-filtro">
+      <ion-label>Ordenar por:</ion-label>
+      <ion-select interface="popover" (ionChange)="organiza(ordenaPor)" [(ngModel)]="ordenaPor">
+        <ion-select-option value="pais">País</ion-select-option>
+        <ion-select-option value="casos">Numero de casos</ion-select-option>
+        <ion-select-option value="mortes">Numero de mortos</ion-select-option>
+        <ion-select-option value="recuperados">Numero de recuperados</ion-select-option>
+      </ion-select>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="atualizaDados($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="screen">
+    <ion-card *ngFor="let pais of paises" class="card-local" (click)="mostraDetalhe(pais)">
+      <div>
+        <ion-item >
+          <ion-label slot="start">{{pais.country}}</ion-label>
+          <div slot="end" >
+            {{pais.confirmed}}  confirmados<br>
+            {{pais.recovered}} recuperados<br>
+            <!-- {{pais.cases}} casos<br> -->
+            {{pais.deaths}} mortes
+          </div>
+        </ion-item>
+      </div>
+    </ion-card>
+  </div>
+  
+</ion-content>

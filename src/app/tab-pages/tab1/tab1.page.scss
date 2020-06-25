@@ -1,0 +1,28 @@
+.card-local{
+  width: 400px;
+}
+
+.card-local ion-item{
+  padding: 1.5%;
+}
+.card-local div {
+  font-size: 13px; 
+  text-align: right;
+}
+.screen {
+  display: flex;  
+  flex-wrap: wrap;
+}
+
+.card-local ion-item:hover{
+  background-color: green;
+}
+
+.select-filtro{
+  margin: 0 16px; 
+  max-width: 500px; 
+  float:right; 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+}

@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Recomendações
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+  <div class="screen">
+    <ion-card *ngFor="let recomendacao of recomendacoes">
+      <div class="desc">{{recomendacao.desc}}</div>
+      <div class="img-rec" *ngIf="recomendacao.img"><img src="{{recomendacao.img}}" alt="{{recomendacao.desc}}"></div>
+    </ion-card>
+  </div>
+</ion-content>

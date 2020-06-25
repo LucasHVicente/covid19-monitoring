@@ -1,0 +1,49 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-title>
+      Covid-19 nos estados brasileiros
+    </ion-title>
+    
+  </ion-toolbar>
+  <!-- <ion-toolbar style="padding-left: 6%; padding-right: 6%;">
+    <ion-label slot="start">Brasil</ion-label>  
+    <div slot="end">
+      {{pais.confirmed}}  confirmados<br>
+      {{pais.recovered}}  recuperados<br>
+      {{pais.cases}} casos<br>
+      {{pais.deaths}}   mortes
+    </div>
+
+  </ion-toolbar> -->
+  <ion-toolbar>
+    <ion-searchbar style="max-width: 500px;" placeholder="Procurar por estado"  [(ngModel)]="busca" (ionChange)="search()"></ion-searchbar>
+    <div class="select-filtro">
+      <ion-label>Ordenar por:</ion-label>
+      <ion-select  interface="popover" (ionChange)="organiza(ordenaPor)" [(ngModel)]="ordenaPor">
+        <ion-select-option value="estado">Estado</ion-select-option>
+        <ion-select-option value="casos">Numero de casos</ion-select-option>
+        <ion-select-option value="mortes">Numero de mortos</ion-select-option>
+        <ion-select-option value="suspeitos">Numero de casos suspeitos</ion-select-option>
+      </ion-select>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="atualizaDados($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="screen">
+    <ion-card *ngFor="let estado of estados" class="card-local" (click)="mostraDetalhe(estado)" >
+      <ion-item >
+        <ion-label slot="start">{{estado.state}}</ion-label>
+        <div slot="end">
+          {{estado.suspects}} suspeitos<br>
+          {{estado.cases}} casos<br>
+          {{estado.deaths}} mortes
+        </div>
+      </ion-item>
+    </ion-card>
+  </div>
+</ion-content>
